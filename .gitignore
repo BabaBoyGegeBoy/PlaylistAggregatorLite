@@ -1,0 +1,25 @@
+.idea/git_toolbox_prj.xml
+
+
+.idea/inspectionProfiles/Project_Default.xml
+common/.DS_Store
+
+# 编译产物 / 运行日志（不纳入版本库）
+gomusic
+gomusic.exe
+gomusic_run.log
+gomusic_run.err
+gomusic.exe~
+*.meta
+*.xml
+*.iml
+.DS_Store
+static/dist
+static/node_modules
+static/package-lock.json
+static/pnpm-lock.yaml
+
+# 酷狗 App 端 cookie（敏感信息，切勿提交）
+.kugou_cookie
+kugou_cookie.txt
+
