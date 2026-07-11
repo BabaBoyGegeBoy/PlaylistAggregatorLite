@@ -28,7 +28,7 @@
 
 ### 方式一：直接运行（推荐）
 
-下载 Release 中的 `PlaylistAggregator-windows-amd64.exe`（Windows），双击即可运行，浏览器打开 <http://127.0.0.1:8081/>。
+下载 Release 中的 `gomusic.exe`（Windows），双击即可运行，浏览器打开 <http://127.0.0.1:8081/>。
 
 ### 方式二：自行编译
 
@@ -76,7 +76,7 @@ go build -o gomusic.exe .
 ## 项目结构
 
 ```
-PlaylistAggregator/
+PlaylistAggregatorLite/
 ├── main.go              # 入口，//go:embed 嵌入 static/dist
 ├── handler/             # HTTP 路由与接口（/songlist、/aggregate）
 ├── logic/               # 各平台解析与聚合逻辑
@@ -88,8 +88,11 @@ PlaylistAggregator/
 ## 致谢与第三方引用
 
 - 原项目 **GoMusic**（[github.com/Bistutu/GoMusic](https://github.com/Bistutu/GoMusic)）：本仓库在其基础上改写，去除了 Redis / MySQL 依赖、精简前端并增加了多歌单聚合能力。
-- [music-lib](https://github.com/guohuiyuan/music-lib)：提供酷狗 / 酷我 / 咪咕 / 千千 / JOOX / bilibili / 5Sing / Apple / Jamendo 等平台解析能力。
+- [music-lib](https://github.com/guohuiyuan/music-lib)（Go 语言库，**AGPL-3.0**）：实际引入的解析核心，提供酷狗 / 酷我 / 咪咕 / 千千 / JOOX / bilibili / 5Sing / Apple / Jamendo 等平台解析能力。
+- [go-music-dl](https://github.com/guohuiyuan/go-music-dl)（**AGPL-3.0**，同作者）：本项目的平台识别逻辑（DetectSource）移植自该项目；它自身依赖上述 music-lib。
 - [TunemyMusic](https://www.tunemymusic.com/zh-CN/transfer) / [Spotlistr](https://spotlistr.com)：推荐的第三方歌单迁移服务。
+
+> 许可提示：本项目以 MIT 发布，但所依赖的 music-lib / go-music-dl 均为 AGPL-3.0；将 AGPL 组件静态链接进分发的二进制可能涉及许可冲突，公开分发前请自行评估合规（详见 LICENSE 与各上游仓库许可）。
 
 ## License
 
