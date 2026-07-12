@@ -83,7 +83,7 @@ let uid = 0;
 
 const labels = {
   chooseFile: '选择 txt / json 文件',
-  hint: '支持本工具导出的 txt（每行「歌名 - 歌手」）或 json（结构化 SongItem 数组 name + artists）。解析后可勾选、修改、增删、排序，再导出。',
+  hint: '支持本工具导出的 txt（每行「歌名 - 歌手」）或 json（结构化数组，字段名兼容 songs_detail / songs / tracks，歌曲名 name，歌手 artists 或 artist）。解析后可勾选、修改、增删、排序，再导出。',
   selectAll: '全选',
   deselectAll: '全不选',
   addRow: '新增一行',
@@ -123,7 +123,8 @@ function parseJson(text) {
   if (Array.isArray(data)) arr = data;
   else if (data && Array.isArray(data.songs_detail)) arr = data.songs_detail;
   else if (data && Array.isArray(data.songs)) arr = data.songs;
-  else throw new Error('无法识别的 JSON 结构（需为 SongItem 数组，或含 songs_detail/songs 字段的对象）');
+  else if (data && Array.isArray(data.tracks)) arr = data.tracks;
+  else throw new Error('无法识别的 JSON 结构（需为 SongItem 数组，或含 songs_detail/songs/tracks 字段的对象）');
   return arr.map(it => {
     if (typeof it === 'string') return splitLine(it);
     const name = it && it.name ? String(it.name) : '';
