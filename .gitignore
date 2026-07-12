@@ -23,6 +23,3 @@ static/pnpm-lock.yaml
 .kugou_cookie
 kugou_cookie.txt
 
-# UPX 压缩工具（本地构建用，二进制不入库）
-upx/
-

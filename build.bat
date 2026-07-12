@@ -3,7 +3,7 @@ REM ============================================================
 REM PlaylistAggregator Lite 构建脚本（Windows）
 REM 流程：构建前端 -> 编译后端 -> UPX 最小压缩
 REM 目的：固化"编译后必须 UPX 压缩"的步骤，避免发布未压缩的大体积 exe
-REM 依赖：upx\upx.exe（UPX 4.2.4，已 gitignore 忽略，为本地构建工具）
+REM 依赖：upx（UPX 4.2.4，需在 PATH 中，例如 C:\Users\Administrator\.local\bin\upx.exe）
 REM 注意：运行前请先停止 8081 服务（go build 会覆盖正在运行的 gomusic.exe）
 REM ============================================================
 setlocal
@@ -26,12 +26,13 @@ if errorlevel 1 ( echo go build failed & exit /b 1 )
 
 REM 3. UPX 最小压缩（--best --lzma）
 echo [3/3] Compressing with UPX (--best --lzma)...
-if not exist upx\upx.exe (
-  echo [WARN] upx\upx.exe not found, skip compression.
-  echo         Download UPX 4.2.4 and place it at upx\upx.exe to enable compression.
+where upx >nul 2>&1
+if errorlevel 1 (
+  echo [WARN] upx not found in PATH, skip compression.
+  echo         Install UPX 4.2.4 and ensure upx.exe is on PATH (e.g. C:\Users\Administrator\.local\bin).
   goto :done
 )
-upx\upx.exe --best --lzma gomusic.exe
+upx --best --lzma gomusic.exe
 
 :done
 echo Build complete: gomusic.exe
