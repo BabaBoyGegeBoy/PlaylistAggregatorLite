@@ -1,6 +1,6 @@
 # 歌单解析与聚合（PlaylistAggregator）
 
-> 输入各平台歌单链接，一键解析并聚合为统一的「歌名 - 歌手」文本，方便你迁移到 Apple Music / YouTube Music / Spotify。
+> 迁移多音乐平台歌单至 Apple Music / YouTube Music / Spotify Music：输入各平台歌单链接，一键解析并聚合为统一的「歌名 - 歌手」文本，即可用于跨平台迁移。
 
 歌单解析与聚合是一款**纯本地运行**的轻量网页小工具：把网易云、QQ、汽水等平台的歌单链接，解析成统一格式的文本，支持多歌单聚合去重，并可直接用于迁移到其他音乐平台。无需部署数据库，开箱即用。
 
@@ -23,6 +23,24 @@
 | 酷狗音乐、酷我音乐、咪咕音乐、千千音乐、JOOX、bilibili、5Sing、Apple Music、Jamendo | 通过 [music-lib](https://github.com/guohuiyuan/music-lib) 补齐解析 |
 
 > 注：酷狗概念版、波点音乐暂不支持解析。
+
+### 迁移去向（目标平台）
+
+本工具产出统一的「歌名 - 歌手」文本，可一键迁移到以下目标平台（通过下方推荐的第三方免费服务完成）：
+
+- **Apple Music**
+- **YouTube Music**
+- **Spotify**
+
+**完整链路一览**：
+
+| 环节 | 说明 |
+| --- | --- |
+| 来源平台（解析） | 网易云 / QQ / 汽水（原生）；酷狗 / 酷我 / 咪咕 / 千千 / JOOX / bilibili / 5Sing / Apple / Jamendo（经 music-lib 补齐） |
+| 本工具职责 | 解析歌单 → 聚合去重 → 输出「歌名 - 歌手」文本 |
+| 目标平台（迁移） | Apple Music / YouTube Music / Spotify（由 TunemyMusic / Spotlistr 写入，非本工具直接写入） |
+
+> 说明：本工具本身只负责「解析 + 聚合」，不直接写入目标平台；跨平台写入由「迁移到其他平台（第三方服务）」中的 TunemyMusic / Spotlistr 完成。
 
 ## 快速开始
 
