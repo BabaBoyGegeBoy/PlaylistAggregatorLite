@@ -25,11 +25,11 @@ go build -o gomusic.exe
 if errorlevel 1 ( echo go build failed & exit /b 1 )
 
 REM 3. UPX 最小压缩（--best --lzma）
-echo [3/3] Compressing with UPX (--best --lzma)...
+echo [3/3] Compressing with UPX --best --lzma ...
 where upx >nul 2>&1
 if errorlevel 1 (
   echo [WARN] upx not found in PATH, skip compression.
-  echo         Install UPX 4.2.4 and ensure upx.exe is on PATH (e.g. C:\Users\Administrator\.local\bin).
+  echo         Install UPX 4.2.4 and ensure upx.exe is on PATH, e.g. C:\Users\Administrator\.local\bin.
   goto :done
 )
 upx --best --lzma gomusic.exe

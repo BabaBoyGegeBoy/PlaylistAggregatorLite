@@ -16,6 +16,8 @@
                   @click="state.activeTab = 'single'">{{ i18n.tabSingle }}</button>
           <button :class="['tab-btn', {active: state.activeTab === 'aggregate'}]"
                   @click="state.activeTab = 'aggregate'">{{ i18n.tabAggregate }}</button>
+          <button :class="['tab-btn', {active: state.activeTab === 'editor'}]"
+                  @click="state.activeTab = 'editor'">{{ i18n.tabEditor }}</button>
         </div>
 
         <!-- 单歌单 -->
@@ -187,6 +189,10 @@
             <button class="btn btn-primary button-center" v-else @click="downloadAgg">{{ i18n.downloadTxt }}</button>
           </div>
         </div>
+
+        <!-- 文件导入编辑 -->
+        <EditorTab v-show="state.activeTab === 'editor'" />
+
       </div>
 
     </main>
@@ -217,6 +223,14 @@
             <li><strong>每行</strong>粘贴一个歌单链接（可填多个）</li>
             <li>点击「聚合歌单」，自动合并并去除重复歌曲，显示总数、去重数与各来源状态</li>
             <li>可「复制结果」或「下载 .txt」</li>
+          </ol>
+
+          <h3>文件导入编辑</h3>
+          <ol>
+            <li>切换到「文件导入编辑」页签</li>
+            <li>点击「选择 txt / json 文件」，导入本工具导出的歌单：txt 每行「歌名 - 歌手」；json 为结构化 SongItem 数组（name + artists）</li>
+            <li>在列表中可勾选、修改歌名/歌手、新增/删除行、用 ↑/↓ 调整顺序</li>
+            <li>点击「导出 .txt」或「导出 .json」，把勾选的歌曲以浏览器下载方式重新导出（未勾选的不导出）</li>
           </ol>
 
           <h3>格式与顺序</h3>
@@ -282,6 +296,7 @@ import {reactive, ref, onMounted, onUnmounted} from 'vue';
 import axios from 'axios';
 import {isSupportedPlatform, isValidUrl} from "@/utils/utils";
 import {sendErrorMessage, sendSuccessMessage} from "@/utils/tip";
+import EditorTab from '@/components/EditorTab.vue';
 
 const state = reactive({
   link: '',
@@ -319,6 +334,7 @@ const i18n = {
   subtitle: '输入各平台歌单链接，一键解析并聚合为统一歌单文本',
   tabSingle: '单歌单解析',
   tabAggregate: '多歌单聚合',
+  tabEditor: '文件导入编辑',
   inputPlaceholder: '输入任意歌单链接，如：http://163cn.tv/zoIxm3',
   aggInputPlaceholder: '每行输入一个歌单链接，如：\nhttp://163cn.tv/zoIxm3\nhttps://y.qq.com/n/ryqq/playlist/...',
   fetchSongList: '获取歌单',
