@@ -92,8 +92,8 @@ PlaylistAggregatorLite/
 - [go-music-dl](https://github.com/guohuiyuan/go-music-dl)（**AGPL-3.0**，同作者）：本项目的平台识别逻辑（DetectSource）移植自该项目；它自身依赖上述 music-lib。
 - [TunemyMusic](https://www.tunemymusic.com/zh-CN/transfer) / [Spotlistr](https://spotlistr.com)：推荐的第三方歌单迁移服务。
 
-> 许可提示：本项目以 MIT 发布，但所依赖的 music-lib / go-music-dl 均为 AGPL-3.0；将 AGPL 组件静态链接进分发的二进制可能涉及许可冲突，公开分发前请自行评估合规（详见 LICENSE 与各上游仓库许可）。
+> 许可说明：本项目以 **AGPL-3.0** 发布，与所依赖的 music-lib / go-music-dl（均为 AGPL-3.0）许可一致。AGPL 第 13 条要求：若你在公开网络上运行修改后的版本（如本工具提供的网页服务），须向用户提供对应源码——本项目完整源码已在 GitHub 仓库公开，符合该要求。
 
 ## License
 
-基于 MIT License 发布，详见 [LICENSE](./LICENSE)。请在分发与改写时保留原作者版权声明。
+基于 GNU Affero General Public License v3.0（**AGPL-3.0**）发布，详见 [LICENSE](./LICENSE)。请在分发与改写时保留原作者版权声明；若在网络上提供修改后的版本，须按 AGPL 第 13 条向用户提供对应源码。
